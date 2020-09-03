@@ -1,16 +1,17 @@
 package com.internet.shop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Order {
     private Long id;
     private List<Product> products;
-    private double price;
+    private Long userId;
 
-    public Order(List<Product> products, double price) {
-        this.products = products;
-        this.price = price;
+    public Order(Long userId) {
+        this.products = new ArrayList<>();
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -29,12 +30,12 @@ public class Order {
         this.products = products;
     }
 
-    public double getPrice() {
-        return price;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -46,13 +47,13 @@ public class Order {
             return false;
         }
         Order order = (Order) o;
-        return Double.compare(order.price, price) == 0
-                && Objects.equals(id, order.id)
-                && Objects.equals(products, order.products);
+        return Objects.equals(id, order.id)
+                && Objects.equals(products, order.products)
+                && Objects.equals(userId, order.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products, price);
+        return Objects.hash(id, products, userId);
     }
 }

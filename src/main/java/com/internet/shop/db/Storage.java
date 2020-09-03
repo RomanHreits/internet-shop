@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Storage {
     public static final List<Product> products = new ArrayList<>();
-    private static Long idGenerator = 0L;
+    private static Long productId = 0L;
 
     public static Product addProduct(Product product) {
-        product.setId(++idGenerator);
+        product.setId(++productId);
         products.add(product);
         return product;
     }

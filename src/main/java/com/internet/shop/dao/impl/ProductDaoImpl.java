@@ -1,4 +1,4 @@
-package com.internet.shop.dao;
+package com.internet.shop.dao.impl;
 
 import com.internet.shop.db.Storage;
 import com.internet.shop.lib.Dao;
@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 
 @Dao
 public class ProductDaoImpl implements ProductDao {
-
     @Override
     public Product create(Product product) {
         return Storage.addProduct(product);
@@ -37,6 +36,6 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-       return Storage.products.removeIf(n -> n.getId().equals(id));
+        return Storage.products.removeIf(product -> product.getId().equals(id));
     }
 }
