@@ -12,7 +12,7 @@ public interface OrderDao {
 
     boolean delete(Long id);
 
-    List<Order> getAllByUserId(Long userId);
+    List<Order> getUsersOrders(Long userId);
 
     List<Order> getAll();
 }

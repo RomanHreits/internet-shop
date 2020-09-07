@@ -8,7 +8,7 @@ public interface ShoppingCartService {
 
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
 
-    ShoppingCart deleteProduct(ShoppingCart shoppingCart, Product product);
+    boolean deleteProduct(ShoppingCart shoppingCart, Product product);
 
     void clear(ShoppingCart shoppingCart);
 
