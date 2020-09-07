@@ -1,11 +1,9 @@
 package com.internet.shop.service;
 
-import com.internet.shop.lib.Service;
 import com.internet.shop.model.Order;
 import com.internet.shop.model.ShoppingCart;
 import java.util.List;
 
-@Service
 public interface OrderService {
     Order completeOrder(ShoppingCart shoppingCart);
 
