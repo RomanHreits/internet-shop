@@ -56,4 +56,12 @@ public class ShoppingCart {
     public int hashCode() {
         return Objects.hash(id, products, userId);
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart {"
+                + "id =" + id
+                + ", products =" + products.toString()
+                + ", userId =" + userId + '}';
+    }
 }
