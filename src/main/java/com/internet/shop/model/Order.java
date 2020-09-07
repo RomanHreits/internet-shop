@@ -56,4 +56,12 @@ public class Order {
     public int hashCode() {
         return Objects.hash(id, products, userId);
     }
+
+    @Override
+    public String toString() {
+        return "Order {"
+                + "id =" + id
+                + ", products =" + products.toString()
+                + ", userId =" + userId + '}';
+    }
 }
