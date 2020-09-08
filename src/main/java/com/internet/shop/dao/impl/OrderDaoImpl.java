@@ -16,6 +16,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public Order update(Order item) {
+        return null;
+    }
+
+    @Override
     public Optional<Order> get(Long id) {
         return Storage.orders.stream()
                 .filter(order -> order.getId().equals(id))
