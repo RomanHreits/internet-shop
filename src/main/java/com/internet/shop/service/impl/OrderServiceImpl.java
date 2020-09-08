@@ -51,12 +51,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order update(Order object) {
-        return null;
+    public Order update(Order item) {
+        return orderDao.update(item);
     }
 
     @Override
-    public Order create(Order object) {
-        return null;
+    public Order create(Order item) {
+        return orderDao.create(item);
     }
 }

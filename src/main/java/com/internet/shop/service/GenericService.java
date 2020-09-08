@@ -2,7 +2,7 @@ package com.internet.shop.service;
 
 import java.util.List;
 
-public interface GenericService<T,V> {
+public interface GenericService<T, V> {
     T create(T item);
 
     T get(V id);
