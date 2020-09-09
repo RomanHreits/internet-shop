@@ -44,21 +44,21 @@ public class Application {
         shoppingCartService.deleteProduct(shoppingCartRoman, productService.get(1L));
 
         System.out.println("shoppingCartService before create order: " + shoppingCartService
-                .getByUserId(userService.get(1L).getId()).toString());
+                .get(userService.get(1L).getId()).toString());
 
         Order order = orderService.completeOrder(shoppingCartRoman);
         System.out.println("shoppingCartService after create order: " + shoppingCartService
-                .getByUserId(userService.get(1L).getId()).toString());
+                .get(userService.get(1L).getId()).toString());
         System.out.println(order.toString());
 
         shoppingCartService.addProduct(shoppingCartBohdan, productService.get(1L));
         shoppingCartService.addProduct(shoppingCartBohdan, productService.get(3L));
 
         System.out.println("shoppingCartService before create order: " + shoppingCartService
-                .getByUserId(userService.get(2L).getId()).toString());
+                .get(userService.get(2L).getId()).toString());
         Order orderBohdan = orderService.completeOrder(shoppingCartBohdan);
         System.out.println("shoppingCartService after create order: " + shoppingCartService
-                .getByUserId(userService.get(2L).getId()).toString());
+                .get(userService.get(2L).getId()).toString());
         System.out.println(orderBohdan.toString());
         System.out.println("---><---");
         System.out.println("All orders is storage: " + orderService.getAll().toString());

@@ -4,6 +4,7 @@ import com.internet.shop.dao.ShoppingCartDao;
 import com.internet.shop.db.Storage;
 import com.internet.shop.lib.Dao;
 import com.internet.shop.model.ShoppingCart;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -25,6 +26,11 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public boolean delete(Long id) {
         return Storage.shoppingCarts.removeIf(cart -> cart.getId().equals(id));
+    }
+
+    @Override
+    public List<ShoppingCart> getAll() {
+        return Storage.shoppingCarts;
     }
 
     @Override
