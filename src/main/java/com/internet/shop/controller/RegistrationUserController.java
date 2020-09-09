@@ -36,7 +36,7 @@ public class RegistrationUserController extends HttpServlet {
             req.setAttribute("message", "Your password and repeat "
                     + "password are not the same!");
             req.setAttribute("currentLogin", login);
-            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/user/registration.jsp").forward(req, resp);
         }
     }
 }

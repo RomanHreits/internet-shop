@@ -20,7 +20,7 @@ public class DeleteProductFromShoppingCartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ShoppingCart shoppingCart = cartService.getByUserId(USER_ID);
-        long id = Long.parseLong(req.getParameter("id").replaceAll("\\D",""));
+        long id = Long.parseLong(req.getParameter("id"));
         String name = req.getParameter("name");
         double price = Double.parseDouble(req.getParameter("price"));
         Product product = new Product(name, price);

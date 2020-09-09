@@ -4,6 +4,13 @@
     <title>Title</title>
 </head>
 <style>
+    input:invalid {
+        border: 2px dashed red;
+    }
+
+    input:valid {
+        border: 2px solid black;
+    }
     body {background-color: white;}
     h1 {color: blue;}
     h3 {color: red}
@@ -13,9 +20,9 @@
 
 <form method="post" action="${pageContext.request.contextPath}/products/add">
     <label><b>Name:</b></label><br>
-    <input type="text", name="name"><br><br>
+    <input type="text", name="name" required pattern="[a-zA-Z]+"><br><br>
     <label>Price:</label><br>
-    <input type="text", name="price"><br><br>
+    <input type="text", name="price" required pattern="\d+"><br><br>
     <input type="submit" value="Add">
 </form>
 </body>

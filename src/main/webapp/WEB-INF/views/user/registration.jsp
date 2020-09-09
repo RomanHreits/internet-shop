@@ -11,6 +11,13 @@
     <title>Title</title>
 </head>
 <style>
+    input:invalid {
+        border: 2px dashed red;
+    }
+
+    input:valid {
+        border: 2px solid black;
+    }
     body {background-color: white;}
     h1 {color: blue;}
     h3 {color: red}
@@ -22,11 +29,11 @@
 
 <form method="post" action="${pageContext.request.contextPath}/registration">
     <label><b>Login:</b></label><br>
-    <input type="text", name="login", value="${currentLogin}"><br>
+    <input type="text", name="login", value="${currentLogin}" required><br>
     <label>Password:</label><br>
-    <input type="password", name="password"><br><br>
+    <input type="password", name="password" required><br><br>
     <label>Repeat password:</label><br>
-    <input type="password", name="repeatPwd"><br><br>
+    <input type="password", name="repeatPwd" required><br><br>
     <input type="submit" value="Register">
 </form>
 </body>
