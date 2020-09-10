@@ -25,6 +25,8 @@
     <input type="text", name="price" required pattern="\d+"><br><br>
     <input type="submit" value="Add">
 </form>
+<h2>${message}</h2>
+<p><a href="${pageContext.request.contextPath}/" style="font-size:25px;">Main-Page</a></p>
 </body>
 </html>
 

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RegistrationUserController extends HttpServlet {
+public class UserRegistrationController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private ShoppingCartService cartService = (ShoppingCartService) injector
@@ -28,7 +28,7 @@ public class RegistrationUserController extends HttpServlet {
             throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if (password.equalsIgnoreCase(req.getParameter("repeatPwd"))) {
+        if (password.equals(req.getParameter("repeatPwd"))) {
             User createdUser = userService.create(new User(login, password));
             cartService.create(new ShoppingCart(createdUser.getId()));
             resp.sendRedirect(req.getContextPath() + "/");

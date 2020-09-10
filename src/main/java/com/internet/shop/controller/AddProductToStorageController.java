@@ -26,6 +26,7 @@ public class AddProductToStorageController extends HttpServlet {
         String name = req.getParameter("name");
         double price = Double.parseDouble(req.getParameter("price"));
         productService.create(new Product(name, price));
-        resp.sendRedirect(req.getContextPath() + "/");
+        req.setAttribute("message", "Product added successfully!");
+        req.getRequestDispatcher("/WEB-INF/views/product/addProduct.jsp").forward(req, resp);
     }
 }
