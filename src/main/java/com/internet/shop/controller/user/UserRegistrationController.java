@@ -1,4 +1,4 @@
-package com.internet.shop.controller;
+package com.internet.shop.controller.user;
 
 import com.internet.shop.lib.Injector;
 import com.internet.shop.model.ShoppingCart;
@@ -31,7 +31,8 @@ public class UserRegistrationController extends HttpServlet {
         if (password.equals(req.getParameter("repeatPwd"))) {
             User createdUser = userService.create(new User(login, password));
             cartService.create(new ShoppingCart(createdUser.getId()));
-            resp.sendRedirect(req.getContextPath() + "/");
+            req.setAttribute("login", createdUser.getLogin().toUpperCase());
+            req.getRequestDispatcher("/WEB-INF/views/user/userMainPage.jsp").forward(req, resp);
         } else {
             req.setAttribute("message", "Your password and repeat "
                     + "password are not the same!");

@@ -35,5 +35,6 @@
 <p><a href="${pageContext.request.contextPath}/products" style="font-size:25px;">Show-All-Products</a></p>
 <p><a href="${pageContext.request.contextPath}/products/add" style="font-size:25px;">Add_Product-To-Storage</a></p>
 <p><a href="${pageContext.request.contextPath}/shoppingCart/products" style="font-size:25px;">Go-to-cart</a></p>
+<p><a href="${pageContext.request.contextPath}/main" style="font-size:25px;">Goooooo</a></p>
 </body>
 </html>

@@ -23,27 +23,26 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Price</th>
+        <th>UserId</th>
     </tr>
-    <c:forEach var="product" items="${products}">
+    <c:forEach var="order" items="${orders}">
         <tr>
             <td>
-                <c:out value="${product.id}"/>
+                <c:out value="${order.id}"/>
             </td>
             <td>
-                <c:out value="${product.name}"/>
+                <c:out value="${order.date}"/>
             </td>
             <td>
-                <c:out value="${product.price}"/>
+                <c:out value="${order.userId}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/shopping-cart/products/add?id=${product.id}">Buy</a>
+                <a href="${pageContext.request.contextPath}/user/orders/order?id=${order.id}">Details</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<p><a href="${pageContext.request.contextPath}/user" style="font-size:25px;"><- Back</a></p>
-<p><a href="${pageContext.request.contextPath}/shoppingCart/products" style="font-size:25px;">Go-to-cart</a></p>
+<p><a href="${pageContext.request.contextPath}/user" style="font-size:25px;">Personal-Office</a></p>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

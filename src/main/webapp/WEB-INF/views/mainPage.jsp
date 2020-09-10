@@ -6,40 +6,15 @@
           crossorigin="anonymous">
     <title>Title</title>
 </head>
-<style>
-    input:invalid {
-        border: 2px dashed red;
-    }
-
-    input:valid {
-        border: 2px solid black;
-    }
-
-    body {
-        margin: 50px;
-        background-color: white;
-    }
-
-    h1 {
-        color: blue;
-    }
-
-    h3 {
-        color: red
-    }
-</style>
+<div class="container">
+    <h1>Welcome to internet shop!!!</h1>
+    <h3>Please choose your role:</h3>
+    <div class="btn-group btn-group-lg">
+        <a href="${pageContext.request.contextPath}/registration" class="btn btn-info" role="button">Consumer</a>
+        <a href="${pageContext.request.contextPath}/admin" class="btn btn-info" role="button">Admin</a>
+    </div>
+</div>
 <body>
-<h1>Enter product name and price!!!</h1>
-
-<form method="post" style="margin: 10px" action="${pageContext.request.contextPath}/products/add">
-    <label><b>Name:</b></label><br>
-    <input type="text" , name="name" required pattern="[a-zA-Z]+"><br><br>
-    <label>Price:</label><br>
-    <input type="text" , name="price" required pattern="\d+"><br><br>
-    <button type="submit" class="btn btn-primary">Add</button>
-</form>
-<h2>${message}</h2>
-<p><a href="${pageContext.request.contextPath}/admin" style="font-size:25px;">Personal-Office</a></p>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
