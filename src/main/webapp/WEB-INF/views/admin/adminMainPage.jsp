@@ -1,6 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -14,34 +12,15 @@
     }
 </style>
 <body>
-<h1>All users list: </h1>
-<div class="container">
-    <table class="table table-dark table-hover" border="1">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Login</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="user" items="${users}">
-            <tr>
-                <td>
-                    <c:out value="${user.id}"/>
-                </td>
-                <td>
-                    <c:out value="${user.login}"/>
-                </td>
-                <td>
-                    <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+<div class="container p-3 my-3 bg-dark text-white">
+    <h1>Welcome to Admin page!</h1>
 </div>
-<p><a href="${pageContext.request.contextPath}/admin" style="font-size:25px;">Personal-Office</a></p>
+<p><a href="${pageContext.request.contextPath}/products/add" style="font-size:25px;">Add_Product-To-Storage</a></p>
+<p><a href="${pageContext.request.contextPath}/users" style="font-size:25px;">Show-All-Users</a></p>
+<p><a href="${pageContext.request.contextPath}/admin/products" style="font-size:25px;">Show-All-Products-In-Storage</a></p>
+<p><a href="${pageContext.request.contextPath}/admin/orders" style="font-size:25px;">Show-All-Orders-In-Storage</a></p>
+<p><a href="${pageContext.request.contextPath}/" style="font-size:25px;">Sing-Out</a></p>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

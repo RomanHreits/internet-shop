@@ -8,10 +8,19 @@ public class Order {
     private Long id;
     private List<Product> products;
     private Long userId;
+    private String date;
 
     public Order(Long userId) {
         this.products = new ArrayList<>();
         this.userId = userId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Long getId() {
