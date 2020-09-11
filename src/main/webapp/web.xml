@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
     <servlet>
         <servlet-name>allUsers</servlet-name>
         <servlet-class>com.internet.shop.controller.admin.GetAllUsersController</servlet-class>
@@ -91,7 +90,7 @@
 
     <servlet-mapping>
         <servlet-name>createOrder</servlet-name>
-        <url-pattern>/shopping-cart/order</url-pattern>
+        <url-pattern>/order/complete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -121,17 +120,17 @@
 
     <servlet-mapping>
         <servlet-name>getProductsForAdmin</servlet-name>
-        <url-pattern>/storage/products</url-pattern>
+        <url-pattern>/admin/products</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteProductsFromStorage</servlet-name>
-        <servlet-class>com.internet.shop.controller.admin.DeleteProductController</servlet-class>
+        <servlet-class>com.internet.shop.controller.admin.DeleteOrderController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>deleteProductsFromStorage</servlet-name>
-        <url-pattern>/storage/products/delete</url-pattern>
+        <url-pattern>/products/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -161,7 +160,7 @@
 
     <servlet-mapping>
         <servlet-name>getUserOrderDetails</servlet-name>
-        <url-pattern>/user/orders/order</url-pattern>
+        <url-pattern>/user/orders/details</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -171,7 +170,7 @@
 
     <servlet-mapping>
         <servlet-name>getAllOrders</servlet-name>
-        <url-pattern>/storage/orders</url-pattern>
+        <url-pattern>/admin/orders</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -181,6 +180,6 @@
 
     <servlet-mapping>
         <servlet-name>deleteOrder</servlet-name>
-        <url-pattern>/storage/orders/delete</url-pattern>
+        <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
 </web-app>

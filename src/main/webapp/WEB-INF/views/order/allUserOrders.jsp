@@ -42,7 +42,7 @@
                     <c:out value="${order.userId}"/>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/user/orders/order?id=${order.id}">Details</a>
+                    <a href="${pageContext.request.contextPath}/user/orders/details?id=${order.id}">Details</a>
                 </td>
             </tr>
         </c:forEach>

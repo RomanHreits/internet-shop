@@ -17,8 +17,8 @@
 </div>
 <p><a href="${pageContext.request.contextPath}/products/add" style="font-size:25px;">Add_Product-To-Storage</a></p>
 <p><a href="${pageContext.request.contextPath}/users" style="font-size:25px;">Show-All-Users</a></p>
-<p><a href="${pageContext.request.contextPath}/storage/products" style="font-size:25px;">Show-All-Products-In-Storage</a></p>
-<p><a href="${pageContext.request.contextPath}/storage/orders" style="font-size:25px;">Show-All-Orders-In-Storage</a></p>
+<p><a href="${pageContext.request.contextPath}/admin/products" style="font-size:25px;">Show-All-Products-In-Storage</a></p>
+<p><a href="${pageContext.request.contextPath}/admin/orders" style="font-size:25px;">Show-All-Orders-In-Storage</a></p>
 <p><a href="${pageContext.request.contextPath}/" style="font-size:25px;">Sing-Out</a></p>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

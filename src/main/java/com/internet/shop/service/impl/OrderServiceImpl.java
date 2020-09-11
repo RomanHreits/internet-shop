@@ -4,6 +4,7 @@ import com.internet.shop.dao.OrderDao;
 import com.internet.shop.lib.Inject;
 import com.internet.shop.lib.Service;
 import com.internet.shop.model.Order;
+import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.OrderService;
 import com.internet.shop.service.ShoppingCartService;
@@ -30,6 +31,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAllUserOrders(Long userId) {
         return orderDao.getUsersOrders(userId);
+    }
+
+    @Override
+    public double getSumProducts(Long id) {
+        return orderDao.get(id).get().getProducts()
+                .stream()
+                .map(Product::getPrice)
+                .reduce(0.0, Double::sum);
     }
 
     @Override
