@@ -14,27 +14,33 @@
     }
 </style>
 <body>
-<h1>All users page! </h1>
-<table border="1" style="width: 20%">
-    <tr>
-        <th>UserId</th>
-        <th>UserName</th>
-    </tr>
-    <c:forEach var="user" items="${users}">
-    <tr>
-        <td>
-            <c:out value="${user.id}"/>
-        </td>
-        <td>
-            <c:out value="${user.login}"/>
-        </td>
-        <td>
-            <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
-        </td>
-    </tr>
-    </c:forEach>
-</table>
-<p><a href="${pageContext.request.contextPath}/" style="font-size:25px;">Main-Page</a></p>
+<h1>All users list: </h1>
+<div class="container">
+    <table class="table table-dark table-hover" border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="user" items="${users}">
+            <tr>
+                <td>
+                    <c:out value="${user.id}"/>
+                </td>
+                <td>
+                    <c:out value="${user.login}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <p><a href="${pageContext.request.contextPath}/admin" style="font-size:25px;">Personal-Office</a></p>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

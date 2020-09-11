@@ -19,29 +19,37 @@
 </style>
 <body>
 <h1>Products list:</h1>
-<table border="1" style="width: 20%">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-    </tr>
-    <c:forEach var="product" items="${products}">
+<div class="container">
+    <table class="table table-dark table-hover" border="1">
+        <thead>
         <tr>
-            <td>
-                <c:out value="${product.id}"/>
-            </td>
-            <td>
-                <c:out value="${product.name}"/>
-            </td>
-            <td>
-                <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/storage/products/delete?id=${product.id}">Delete</a>
-            </td>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Action</th>
         </tr>
-    </c:forEach>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach var="product" items="${products}">
+            <tr>
+                <td>
+                    <c:out value="${product.id}"/>
+                </td>
+                <td>
+                    <c:out value="${product.name}"/>
+                </td>
+                <td>
+                    <c:out value="${product.price}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/storage/products/delete?id=${product.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <p><a href="${pageContext.request.contextPath}/products/add" style="font-size:25px;">Add-Product-To-Storage</a></p>
 <p><a href="${pageContext.request.contextPath}/admin" style="font-size:25px;">Personal-Office</a></p>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

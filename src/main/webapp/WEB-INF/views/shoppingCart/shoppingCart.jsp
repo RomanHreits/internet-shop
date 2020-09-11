@@ -20,29 +20,37 @@
 <body>
 <h1>Shopping cart of customer:</h1>
 <h2>${message}</h2>
-<table border="1" style="width: 20%">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-    </tr>
-    <c:forEach var="product" items="${products}">
+<div class="container">
+    <table class="table table-dark table-hover" border="1">
+        <thead>
         <tr>
-            <td>
-                <c:out value="${product.id}"/>
-            </td>
-            <td>
-                <c:out value="${product.name}"/>
-            </td>
-            <td>
-                <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/shopping-cart/products/delete?id=${product.id}">Delete</a>
-            </td>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Action</th>
         </tr>
-    </c:forEach>
-</table><br>
+        </thead>
+        <tbody>
+        <c:forEach var="product" items="${products}">
+            <tr>
+                <td>
+                    <c:out value="${product.id}"/>
+                </td>
+                <td>
+                    <c:out value="${product.name}"/>
+                </td>
+                <td>
+                    <c:out value="${product.price}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/shopping-cart/products/delete?id=${product.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <a href="${pageContext.request.contextPath}/shopping-cart/order" class="btn btn-info" role="button">ORDER</a>
 <a href="${pageContext.request.contextPath}/user" class="btn btn-dark" role="button">Personal-Office</a>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

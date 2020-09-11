@@ -18,30 +18,37 @@
     }
 </style>
 <body>
-<h1>Products list:</h1>
-<table border="1" style="width: 20%">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>UserId</th>
-    </tr>
-    <c:forEach var="order" items="${orders}">
+<h1>Orders list:</h1>
+<div class="container">
+    <table class="table table-dark table-hover" border="1">
+        <thead>
         <tr>
-            <td>
-                <c:out value="${order.id}"/>
-            </td>
-            <td>
-                <c:out value="${order.date}"/>
-            </td>
-            <td>
-                <c:out value="${order.userId}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/user/orders/order?id=${order.id}">Details</a>
-            </td>
+            <th>ID</th>
+            <th>Date</th>
+            <th>UserId</th>
+            <th>Action</th>
         </tr>
-    </c:forEach>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach var="order" items="${orders}">
+            <tr>
+                <td>
+                    <c:out value="${order.id}"/>
+                </td>
+                <td>
+                    <c:out value="${order.date}"/>
+                </td>
+                <td>
+                    <c:out value="${order.userId}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/user/orders/order?id=${order.id}">Details</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <p><a href="${pageContext.request.contextPath}/user" style="font-size:25px;">Personal-Office</a></p>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -86,7 +86,7 @@
 
     <servlet>
         <servlet-name>createOrder</servlet-name>
-        <servlet-class>com.internet.shop.controller.user.CreateOrderController</servlet-class>
+        <servlet-class>com.internet.shop.controller.user.CompleteOrderController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -126,7 +126,7 @@
 
     <servlet>
         <servlet-name>deleteProductsFromStorage</servlet-name>
-        <servlet-class>com.internet.shop.controller.admin.DeleteProductFromStorageController</servlet-class>
+        <servlet-class>com.internet.shop.controller.admin.DeleteProductController</servlet-class>
     </servlet>
 
     <servlet-mapping>
