@@ -3,6 +3,7 @@ package com.internet.shop.web.filters;
 import com.internet.shop.lib.Injector;
 import com.internet.shop.service.UserService;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -35,11 +36,16 @@ public class AuthenticationFilter implements Filter {
             return;
         }
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        if (userId == null || userService.get(userId) == null) {
+        if (userId == null) {
             resp.sendRedirect(req.getContextPath() + "/registration");
             return;
         }
-
+        try {
+            userService.get(userId);
+        } catch (NoSuchElementException e) {
+            resp.sendRedirect(req.getContextPath() + "/registration");
+            return;
+        }
         filterChain.doFilter(req, resp);
     }
 
