@@ -20,8 +20,8 @@
         margin: 50px;
     }
 
-    h2 {
-        color: white;
+    h1 {
+        color: blue;
     }
 
     h3 {
@@ -29,23 +29,29 @@
     }
 </style>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <h2>Enter your login and password for register!!!</h2>
-    <a style="margin-left: 45%" href="${pageContext.request.contextPath}/login" class="btn btn-success btn-lg" role="button">SingIn</a>
-</nav>
-<h3>${message}</h3>
-<form method="post" action="${pageContext.request.contextPath}/registration">
-    <label><b>Login:</b></label><br>
-    <input type="text" , name="login" , value="${currentLogin}" required><br>
-    <label>Password:</label><br>
-    <input type="password" , name="password" required><br><br>
-    <label>Repeat password:</label><br>
-    <input type="password" , name="repeatPwd" required><br><br>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+<h1>Enter your login and password !!!</h1>
+<h3 style="color: darkred">${errorMessage}</h3>
+<div class="container">
+    <form method="post" class="was-validated" action="${pageContext.request.contextPath}/login">
+        <div class="form-group">
+            <div class="form-group col-md-6">
+                <label for="login">UserLogin:</label>
+                <input type="text" class="form-control" id="login" placeholder="Enter login" name="login" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Field cannot be empty</div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Field cannot be empty</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
 <br>
 <p><a href="${pageContext.request.contextPath}/" style="font-size:25px;">Back-to-Main-Page</a></p>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
