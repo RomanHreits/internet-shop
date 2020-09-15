@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GetShoppingCartController extends HttpServlet {
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "user_Id";
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private ShoppingCartService cartService = (ShoppingCartService) injector
             .getInstance(ShoppingCartService.class);
@@ -21,8 +21,9 @@ public class GetShoppingCartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         List<Product> products = null;
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
         try {
-            products = cartService.getByUserId(USER_ID).getProducts();
+            products = cartService.getByUserId(userId).getProducts();
         } catch (NoSuchElementException e) {
             req.setAttribute("message", "Cart not available first register");
             req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
