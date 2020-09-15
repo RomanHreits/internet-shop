@@ -182,4 +182,24 @@
         <servlet-name>deleteOrder</servlet-name>
         <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>loginUser</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.LoginController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>loginUser</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>authenticationFilter</filter-name>
+        <filter-class>com.internet.shop.web.filters.AuthenticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

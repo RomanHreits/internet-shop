@@ -13,7 +13,7 @@
 </style>
 <body>
 <div class="container p-3 my-3 bg-dark text-white">
-    <h1>${login} Welcome to your page!</h1>
+    <h1>Welcome to your page!</h1>
 </div>
 <p><a href="${pageContext.request.contextPath}/products" style="font-size:25px;">Products</a></p>
 <p><a href="${pageContext.request.contextPath}/shoppingCart/products" style="font-size:25px;">Shopping-Cart</a></p>
