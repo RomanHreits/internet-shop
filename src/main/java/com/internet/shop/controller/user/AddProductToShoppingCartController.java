@@ -22,9 +22,10 @@ public class AddProductToShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long id = (Long) req.getSession().getAttribute(USER_ID);
-        Product product = productService.get(id);
-        ShoppingCart userCart = cartService.getByUserId(id);
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        Long productId = Long.parseLong(req.getParameter("id"));
+        Product product = productService.get(productId);
+        ShoppingCart userCart = cartService.getByUserId(userId);
         cartService.addProduct(userCart, product);
         resp.sendRedirect(req.getContextPath() + "/products");
     }
