@@ -20,8 +20,8 @@
         margin: 50px;
     }
 
-    h1 {
-        color: blue;
+    h2 {
+        color: white;
     }
 
     h3 {
@@ -29,7 +29,10 @@
     }
 </style>
 <body>
-<h1>Enter your login and password !!!</h1>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <h2>Enter your login and password !!!</h2>
+    <a style="margin-left: 45%" href="${pageContext.request.contextPath}/registration" class="btn btn-success btn-lg" role="button">Registration</a>
+</nav>
 <h3 style="color: darkred">${errorMessage}</h3>
 <div class="container">
     <form method="post" class="was-validated" action="${pageContext.request.contextPath}/login">

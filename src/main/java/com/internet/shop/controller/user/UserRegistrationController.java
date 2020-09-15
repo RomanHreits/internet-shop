@@ -10,8 +10,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class UserRegistrationController extends HttpServlet {
+    private static final String USER_ID = "user_Id";
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private ShoppingCartService cartService = (ShoppingCartService) injector
@@ -31,7 +33,9 @@ public class UserRegistrationController extends HttpServlet {
         if (password.equals(req.getParameter("repeatPwd"))) {
             User createdUser = userService.create(new User(login, password));
             cartService.create(new ShoppingCart(createdUser.getId()));
-            resp.sendRedirect(req.getContextPath() + "/login");
+            HttpSession session = req.getSession();
+            session.setAttribute(USER_ID, createdUser.getId());
+            resp.sendRedirect(req.getContextPath() + "/user");
         } else {
             req.setAttribute("message", "Your password and repeat "
                     + "password are not the same!");

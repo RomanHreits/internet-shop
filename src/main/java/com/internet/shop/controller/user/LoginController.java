@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
+    private static final String USER_ID = "user_Id";
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private AuthenticationService authenticationService = (AuthenticationService) injector
             .getInstance(AuthenticationService.class);
@@ -19,7 +20,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("WEB-INF/views/user/userLogin.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/views/user/userLogin.jsp")
+                .forward(req, resp);
     }
 
     @Override
@@ -30,11 +32,12 @@ public class LoginController extends HttpServlet {
         try {
             User user = authenticationService.login(login, pwd);
             HttpSession session = req.getSession();
-            session.setAttribute("user_Id", user.getId());
+            session.setAttribute(USER_ID, user.getId());
 
         } catch (AuthenticationException e) {
             req.setAttribute("errorMessage", e.getMessage());
-            req.getRequestDispatcher("WEB-INF/views/user/userLogin.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/views/user/userLogin.jsp")
+                    .forward(req, resp);
             return;
         }
         resp.sendRedirect(req.getContextPath() + "/user");
