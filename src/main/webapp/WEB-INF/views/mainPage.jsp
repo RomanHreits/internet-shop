@@ -5,9 +5,39 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
     <title>Title</title>
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            font-weight: 500;
+        }
+    </style>
 </head>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <h1 style="color: white">Welcome to internet shop!!!</h1>
+    <div class="btn-group">
+        <button type="button" class="btn btn-info btn-lg dropdown-toggle" style="margin-left: 30%" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            AdminActions
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/products/add">Add_Product-To-Storage</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/users">Show-All-Users</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">Show-All-Products-In-Storage</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/orders">Show-All-Orders-In-Storage</a>
+        </div>
+    </div>
+    <div class="btn-group">
+    <button type="button" class="btn btn-danger btn-lg dropdown-toggle" style="margin-left: 60px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        UserActions
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/products">BuyProducts</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/shoppingCart/products">Shopping-Cart</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/user/orders">User-Orders</a>
+    </div>
+    </div>
+    <a style="margin-left: 20%" href="${pageContext.request.contextPath}/login" class="btn btn-success btn-lg" role="button">SingIn</a>
+</nav>
 <div class="container">
-    <h1>Welcome to internet shop!!!</h1>
     <h3>Please choose your role:</h3>
     <div class="btn-group btn-group-lg">
         <a href="${pageContext.request.contextPath}/registration" class="btn btn-info" role="button">Consumer</a>
