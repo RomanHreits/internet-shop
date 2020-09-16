@@ -7,6 +7,7 @@ import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.ShoppingCartService;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -40,8 +41,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCart getByUserId(Long userId) {
-        return shoppingCartDao.getByUserId(userId).get();
+    public Optional<ShoppingCart> getByUserId(Long userId) {
+        return shoppingCartDao.getByUserId(userId);
     }
 
     @Override
@@ -68,5 +69,4 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCart update(ShoppingCart item) {
         return shoppingCartDao.update(item);
     }
-
 }

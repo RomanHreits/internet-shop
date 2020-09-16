@@ -2,6 +2,7 @@ package com.internet.shop.service;
 
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
+import java.util.Optional;
 
 public interface ShoppingCartService extends GenericService<ShoppingCart, Long> {
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
@@ -10,5 +11,5 @@ public interface ShoppingCartService extends GenericService<ShoppingCart, Long> 
 
     void clear(ShoppingCart shoppingCart);
 
-    ShoppingCart getByUserId(Long userId);
+    Optional<ShoppingCart> getByUserId(Long userId);
 }

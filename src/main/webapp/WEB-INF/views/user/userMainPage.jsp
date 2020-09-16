@@ -15,6 +15,7 @@
 <div class="container p-3 my-3 bg-dark text-white">
     <h1>Welcome to your page!</h1>
 </div>
+<h3 style="color: red">${message}</h3>
 <p><a href="${pageContext.request.contextPath}/products" style="font-size:25px;">Products</a></p>
 <p><a href="${pageContext.request.contextPath}/shoppingCart/products" style="font-size:25px;">Shopping-Cart</a></p>
 <p><a href="${pageContext.request.contextPath}/user/orders" style="font-size:25px;">User-Orders</a></p>

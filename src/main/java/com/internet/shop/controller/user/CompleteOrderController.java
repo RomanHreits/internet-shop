@@ -21,7 +21,7 @@ public class CompleteOrderController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        ShoppingCart userCart = cartService.getByUserId(userId);
+        ShoppingCart userCart = cartService.getByUserId(userId).get();
         orderService.completeOrder(userCart);
         req.setAttribute("message", "The order is placed, thank you for your purchase");
         req.getRequestDispatcher("/WEB-INF/views/shoppingCart/shoppingCart.jsp").forward(req, resp);
