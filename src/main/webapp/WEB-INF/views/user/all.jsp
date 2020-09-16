@@ -12,6 +12,7 @@
 </style>
 <body>
 <h1>All users list: </h1>
+<h4 style="color: red">${message}</h4>
 <div class="container">
     <table class="table table-dark table-hover" border="1">
         <thead>
