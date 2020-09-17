@@ -28,12 +28,19 @@ public class AuthorizationFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         protectedUrl.put("/products/add", List.of(Role.RoleName.ADMIN));
         protectedUrl.put("/users", List.of(Role.RoleName.ADMIN));
+        protectedUrl.put("/users/delete", List.of(Role.RoleName.ADMIN));
         protectedUrl.put("/admin/products", List.of(Role.RoleName.ADMIN));
+        protectedUrl.put("/products/delete", List.of(Role.RoleName.ADMIN));
         protectedUrl.put("/admin/orders", List.of(Role.RoleName.ADMIN));
+        protectedUrl.put("/orders/delete", List.of(Role.RoleName.ADMIN));
         protectedUrl.put("/admin", List.of(Role.RoleName.ADMIN));
         protectedUrl.put("/products", List.of(Role.RoleName.USER));
+        protectedUrl.put("/shopping-cart/products/add", List.of(Role.RoleName.USER));
+        protectedUrl.put("/shopping-cart/products/delete", List.of(Role.RoleName.USER));
         protectedUrl.put("/shoppingCart/products", List.of(Role.RoleName.USER));
         protectedUrl.put("/user/orders", List.of(Role.RoleName.USER));
+        protectedUrl.put("/order/complete", List.of(Role.RoleName.USER));
+        protectedUrl.put("/user/orders/details", List.of(Role.RoleName.USER));
         protectedUrl.put("/user", List.of(Role.RoleName.USER));
     }
 
