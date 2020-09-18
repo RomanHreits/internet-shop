@@ -23,10 +23,11 @@ public class GetShoppingCartController extends HttpServlet {
         List<Product> products = null;
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         try {
-            products = cartService.getByUserId(userId).getProducts();
+            products = cartService.getByUserId(userId).get().getProducts();
         } catch (NoSuchElementException e) {
-            req.setAttribute("message", "Cart not available first register");
-            req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+            req.setAttribute("message", "Shopping Cart is empty!!!");
+            req.getRequestDispatcher("/WEB-INF/views/user/userMainPage.jsp").forward(req, resp);
+            return;
         }
         req.setAttribute("products", products);
         req.getRequestDispatcher("/WEB-INF/views/shoppingCart/shoppingCart.jsp").forward(req, resp);

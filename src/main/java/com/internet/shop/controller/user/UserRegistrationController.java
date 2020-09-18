@@ -1,11 +1,12 @@
 package com.internet.shop.controller.user;
 
 import com.internet.shop.lib.Injector;
-import com.internet.shop.model.ShoppingCart;
+import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
 import com.internet.shop.service.ShoppingCartService;
 import com.internet.shop.service.UserService;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +32,12 @@ public class UserRegistrationController extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         if (password.equals(req.getParameter("repeatPwd"))) {
-            User createdUser = userService.create(new User(login, password));
-            cartService.create(new ShoppingCart(createdUser.getId()));
+            User user = new User(login, password);
+            user.setRoles(Set.of(Role.of("USER")));
+            User createdUser = userService.create(user);
             HttpSession session = req.getSession();
             session.setAttribute(USER_ID, createdUser.getId());
-            resp.sendRedirect(req.getContextPath() + "/user");
+            resp.sendRedirect(req.getContextPath() + "/");
         } else {
             req.setAttribute("message", "Your password and repeat "
                     + "password are not the same!");

@@ -2,7 +2,6 @@ package com.internet.shop.controller.user;
 
 import com.internet.shop.lib.Injector;
 import com.internet.shop.model.Product;
-import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.ProductService;
 import com.internet.shop.service.ShoppingCartService;
 import java.io.IOException;
@@ -25,8 +24,7 @@ public class AddProductToShoppingCartController extends HttpServlet {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         Long productId = Long.parseLong(req.getParameter("id"));
         Product product = productService.get(productId);
-        ShoppingCart userCart = cartService.getByUserId(userId);
-        cartService.addProduct(userCart, product);
+        cartService.addProduct(cartService.getByUserId(userId).get(), product);
         resp.sendRedirect(req.getContextPath() + "/products");
     }
 }

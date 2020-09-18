@@ -193,6 +193,41 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>userLogout</servlet-name>
+        <servlet-class>com.internet.shop.controller.LogoutController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userLogout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>injectData</servlet-name>
+        <servlet-class>com.internet.shop.controller.InjectDataController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>injectData</servlet-name>
+        <url-pattern>/inject</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>errorHandle</servlet-name>
+        <servlet-class>com.internet.shop.controller.ErrorController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>errorHandle</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error</location>
+    </error-page>
+
     <filter>
         <filter-name>authenticationFilter</filter-name>
         <filter-class>com.internet.shop.web.filters.AuthenticationFilter</filter-class>
@@ -200,6 +235,16 @@
 
     <filter-mapping>
         <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>authorizationFilter</filter-name>
+        <filter-class>com.internet.shop.web.filters.AuthorizationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>
