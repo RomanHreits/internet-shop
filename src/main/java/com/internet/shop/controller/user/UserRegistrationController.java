@@ -2,6 +2,7 @@ package com.internet.shop.controller.user;
 
 import com.internet.shop.lib.Injector;
 import com.internet.shop.model.Role;
+import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
 import com.internet.shop.service.ShoppingCartService;
 import com.internet.shop.service.UserService;
@@ -35,6 +36,7 @@ public class UserRegistrationController extends HttpServlet {
             User user = new User(login, password);
             user.setRoles(Set.of(Role.of("USER")));
             User createdUser = userService.create(user);
+            cartService.create(new ShoppingCart(createdUser.getId()));
             HttpSession session = req.getSession();
             session.setAttribute(USER_ID, createdUser.getId());
             resp.sendRedirect(req.getContextPath() + "/");
