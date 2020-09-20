@@ -30,11 +30,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product item) {
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement ps = connection
+                PreparedStatement preparedStatement = connection
                         .prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            prepareStatement(ps, item);
-            ps.executeUpdate();
-            ResultSet generatedKeys = ps.getGeneratedKeys();
+            setValues(preparedStatement, item);
+            preparedStatement.executeUpdate();
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 item.setId(generatedKeys.getLong(1));
             }
@@ -47,11 +47,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product update(Product item) {
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement ps = connection
+                PreparedStatement preparedStatement = connection
                         .prepareStatement(UPDATE_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            prepareStatement(ps, item);
-            ps.setLong(3, item.getId());
-            if (ps.executeUpdate() > 0) {
+            setValues(preparedStatement, item);
+            preparedStatement.setLong(3, item.getId());
+            if (preparedStatement.executeUpdate() > 0) {
                 return item;
             } else {
                 throw new DataProcessingException("Can't update product");
@@ -64,12 +64,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Optional<Product> get(Long id) {
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement ps = connection
+                PreparedStatement preparedStatement = connection
                         .prepareStatement(SELECT_ONE_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setLong(1, id);
-            ResultSet resultSet = ps.executeQuery();
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(productMapper(resultSet));
+                return Optional.of(conversionToProduct(resultSet));
             } else {
                 throw new DataProcessingException("Can't get product");
             }
@@ -81,10 +81,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public boolean delete(Long id) {
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement ps = connection
+                PreparedStatement preparedStatement = connection
                         .prepareStatement(DELETE_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setLong(1, id);
-            return ps.executeUpdate() > 0;
+            preparedStatement.setLong(1, id);
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't delete product", ex);
         }
@@ -94,11 +94,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public List<Product> getAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement ps = connection
+                PreparedStatement preparedStatement = connection
                         .prepareStatement(SELECT_ALL_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            ResultSet resultSet = ps.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                products.add(productMapper(resultSet));
+                products.add(conversionToProduct(resultSet));
             }
             return products;
         } catch (SQLException ex) {
@@ -106,12 +106,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
         }
     }
 
-    private void prepareStatement(PreparedStatement ps, Product product) throws SQLException {
+    private void setValues(PreparedStatement ps, Product product) throws SQLException {
         ps.setString(1, product.getName());
         ps.setDouble(2, product.getPrice());
     }
 
-    private Product productMapper(ResultSet resultSet) throws SQLException {
+    private Product conversionToProduct(ResultSet resultSet) throws SQLException {
         long id = resultSet.getLong("product_id");
         double price = resultSet.getDouble("price");
         String name = resultSet.getString("productName");
