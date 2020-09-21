@@ -37,7 +37,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
-        String query = "UPDATE products SET name =?,price=? WHERE id = ?";
+        String query = "UPDATE products SET name =?,price=? WHERE id = ? AND is_deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement preparedStatement = connection
                         .prepareStatement(query)) {
@@ -46,9 +46,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
             if (preparedStatement.executeUpdate() > 0) {
                 return product;
             }
-            throw new DataProcessingException("Can't update product");
+            throw new DataProcessingException("Can't update product with id: " + product.getId());
         } catch (SQLException ex) {
-            throw new DataProcessingException("Can't update product", ex);
+            throw new DataProcessingException("Can't update product with id: "
+                    + product.getId(), ex);
         }
     }
 
@@ -63,15 +64,15 @@ public class ProductDaoJdbcImpl implements ProductDao {
             if (resultSet.next()) {
                 return Optional.of(conversionToProduct(resultSet));
             }
-            throw new DataProcessingException("Can't get product with id: " + id);
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't get product with id: " + id, ex);
         }
+        return Optional.empty();
     }
 
     @Override
     public boolean delete(Long id) {
-        String query = "UPDATE products SET is_deleted = 1 WHERE id = ?";
+        String query = "UPDATE products SET is_deleted = TRUE WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection
                         .prepareStatement(query)) {
