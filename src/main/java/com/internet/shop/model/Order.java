@@ -15,6 +15,12 @@ public class Order {
         this.userId = userId;
     }
 
+    public Order(Long id, Long userId) {
+        this.id = id;
+        this.products = new ArrayList<>();
+        this.userId = userId;
+    }
+
     public String getDate() {
         return date;
     }

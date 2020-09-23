@@ -29,6 +29,8 @@
 <h2>Enter your login and password for register!!!</h2>
 <h3>${message}</h3>
 <form method="post" action="${pageContext.request.contextPath}/registration">
+    <label><b>Name:</b></label><br>
+    <input type="text" , name="name" , value="${currentName}" required><br>
     <label><b>Login:</b></label><br>
     <input type="text" , name="login" , value="${currentLogin}" required><br>
     <label>Password:</label><br>
