@@ -20,11 +20,11 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
 
     @Override
     public Optional<ShoppingCart> getByUserId(Long userId) {
+        String selectQuery =
+                "SELECT * FROM shopping_carts WHERE user_id = ? AND is_deleted = FALSE ";
         ShoppingCart cart = null;
         try (Connection connection = ConnectionUtil.getConnection();
-                 PreparedStatement statement = connection
-                         .prepareStatement("SELECT * FROM shopping_carts "
-                             + "WHERE user_id = ? AND is_deleted = FALSE ")) {
+                 PreparedStatement statement = connection.prepareStatement(selectQuery)) {
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -34,8 +34,10 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get shopping_cart with userId: " + userId, e);
         }
-        cart.setProducts(getShoppingCartProducts(cart.getId()));
-        return Optional.of(cart);
+        if (cart != null) {
+            cart.setProducts(getShoppingCartProducts(cart.getId()));
+        }
+        return Optional.ofNullable(cart);
     }
 
     @Override
@@ -49,22 +51,21 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
             if (generatedKeys.next()) {
                 shoppingCart.setId(generatedKeys.getLong(1));
             }
-            for (Product product : shoppingCart.getProducts()) {
-                addDataToShoppingCartProductsTable(shoppingCart.getId(), product.getId());
-            }
-            return shoppingCart;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create ShoppingCart with id: "
                     + shoppingCart.getId(), e);
         }
+        for (Product product : shoppingCart.getProducts()) {
+            addDataToShoppingCartProductsTable(shoppingCart.getId(), product.getId());
+        }
+        return shoppingCart;
     }
 
     @Override
     public ShoppingCart update(ShoppingCart cart) {
+        String deleteQuery = "DELETE FROM shopping_cart_products WHERE cart_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-                 PreparedStatement statement = connection
-                         .prepareStatement("DELETE FROM shopping_cart_products "
-                             + "WHERE cart_id = ?")) {
+                 PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
             statement.setLong(1, cart.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -76,10 +77,11 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
 
     @Override
     public Optional<ShoppingCart> get(Long id) {
+        String selectQuery =
+                "SELECT * FROM shopping_carts WHERE cart_id = ? AND is_deleted = FALSE";
         ShoppingCart cart = null;
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement("SELECT * "
-                        + "FROM shopping_carts WHERE cart_id = ? AND is_deleted = FALSE")) {
+                PreparedStatement statement = connection.prepareStatement(selectQuery)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -91,16 +93,15 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
         }
         if (cart != null) {
             cart.setProducts(getShoppingCartProducts(cart.getId()));
-            return Optional.of(cart);
         }
-        throw new DataProcessingException("Can't get shopping_cart with id: " + id);
+        return Optional.ofNullable(cart);
     }
 
     @Override
     public boolean delete(Long id) {
-        String query = "UPDATE shopping_carts SET is_deleted = TRUE WHERE cart_id = ?";
+        String updateQuery = "UPDATE shopping_carts SET is_deleted = TRUE WHERE cart_id = ?";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement =
-                connection.prepareStatement(query)) {
+                connection.prepareStatement(updateQuery)) {
             statement.setLong(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -110,10 +111,10 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
 
     @Override
     public List<ShoppingCart> getAll() {
+        String selectQuery = "SELECT * FROM shopping_carts WHERE is_deleted = FALSE";
         List<ShoppingCart> carts = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
-                 PreparedStatement statement = connection.prepareStatement("SELECT * "
-                         + "FROM shopping_carts WHERE is_deleted = FALSE")) {
+                PreparedStatement statement = connection.prepareStatement(selectQuery)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 ShoppingCart cart = new ShoppingCart(resultSet.getLong("cart_id"),
@@ -130,10 +131,10 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
     }
 
     private void addDataToShoppingCartProductsTable(long cartId, long productId) {
+        String insertQuery = "INSERT INTO shopping_cart_products (cart_id, product_id) VALUES(?,?)";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection
-                        .prepareStatement("INSERT INTO shopping_cart_products "
-                             + "(cart_id, product_id) VALUES(?,?)")) {
+                 PreparedStatement statement = connection
+                         .prepareStatement(insertQuery)) {
             statement.setLong(1, cartId);
             statement.setLong(2, productId);
             statement.executeUpdate();
@@ -144,11 +145,11 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
     }
 
     private List<Product> getShoppingCartProducts(long cartId) {
+        String selectQuery = "SELECT * FROM products p JOIN shopping_cart_products scp "
+                + "ON scp.product_id = p.product_id WHERE cart_id = ? AND is_deleted = FALSE";
         List<Product> products = new ArrayList<>();
-        try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement =
-                connection.prepareStatement("SELECT * FROM products p JOIN "
-                        + "shopping_cart_products scp ON scp.product_id = p.product_id "
-                        + "WHERE cart_id = ? AND is_deleted = FALSE")) {
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(selectQuery)) {
             statement.setLong(1, cartId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -163,9 +164,9 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
     }
 
     private ShoppingCart addProductsToShoppingCart(ShoppingCart cart) {
-        String query = "INSERT INTO shopping_cart_products (cart_id, product_id) VALUES(?,?)";
+        String insertQuery = "INSERT INTO shopping_cart_products (cart_id, product_id) VALUES(?,?)";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement =
-                connection.prepareStatement(query)) {
+                connection.prepareStatement(insertQuery)) {
             for (Product product : cart.getProducts()) {
                 statement.setLong(1, cart.getId());
                 statement.setLong(2, product.getId());
