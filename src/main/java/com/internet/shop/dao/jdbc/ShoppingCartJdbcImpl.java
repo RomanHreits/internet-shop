@@ -79,6 +79,7 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
     public Optional<ShoppingCart> get(Long id) {
         String selectQuery =
                 "SELECT * FROM shopping_carts WHERE cart_id = ? AND is_deleted = FALSE";
+        List<Product> products = getShoppingCartProducts(id);
         ShoppingCart cart = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(selectQuery)) {
@@ -87,14 +88,12 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
             if (resultSet.next()) {
                 cart = new ShoppingCart(resultSet.getLong("cart_id"),
                         resultSet.getLong("user_id"));
+                cart.setProducts(products);
             }
+            return Optional.ofNullable(cart);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get shopping_cart with id: " + id, e);
         }
-        if (cart != null) {
-            cart.setProducts(getShoppingCartProducts(cart.getId()));
-        }
-        return Optional.ofNullable(cart);
     }
 
     @Override
