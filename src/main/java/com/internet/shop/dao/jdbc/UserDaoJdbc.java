@@ -42,7 +42,7 @@ public class UserDaoJdbc implements UserDao {
 
     @Override
     public User create(User user) {
-        String insertQuery = "INSERT INTO users (name, login, password) VALUES(?,?,?)";
+        String insertQuery = "INSERT INTO users (name, login, password, salt) VALUES(?,?,?,?)";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement =
                 connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
             setValues(statement, user);
@@ -63,7 +63,7 @@ public class UserDaoJdbc implements UserDao {
 
     @Override
     public User update(User user) {
-        String updateQuery = "UPDATE users SET name = ?, login = ?, password = ? "
+        String updateQuery = "UPDATE users SET name = ?, login = ?, password = ?, salt = ? "
                 + "WHERE user_id = ? AND is_deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(updateQuery)) {
@@ -135,6 +135,7 @@ public class UserDaoJdbc implements UserDao {
         statement.setString(1, user.getName());
         statement.setString(2, user.getLogin());
         statement.setString(3, user.getPassword());
+        statement.setBytes(4, user.getSalt());
     }
 
     private User conversionToUser(ResultSet resultSet) throws SQLException {
@@ -142,7 +143,8 @@ public class UserDaoJdbc implements UserDao {
         String name = resultSet.getString("name");
         String login = resultSet.getString("login");
         String password = resultSet.getString("password");
-        return new User(id, name, login, password);
+        byte[] salt = resultSet.getBytes("salt");
+        return new User(id, name, login, password, salt);
     }
 
     private void addUserRoles(long userId, long roleId) {
