@@ -29,7 +29,7 @@ public class UserDaoJdbc implements UserDao {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                user = conversionToUser(resultSet);
+                user = convertToUser(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't find User with login: " + login, e);
@@ -88,7 +88,7 @@ public class UserDaoJdbc implements UserDao {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                user = conversionToUser(resultSet);
+                user = convertToUser(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't find User with id: " + id, e);
@@ -119,7 +119,7 @@ public class UserDaoJdbc implements UserDao {
                 PreparedStatement statement = connection.prepareStatement(selectQuery)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                User user = conversionToUser(resultSet);
+                User user = convertToUser(resultSet);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -138,7 +138,7 @@ public class UserDaoJdbc implements UserDao {
         statement.setBytes(4, user.getSalt());
     }
 
-    private User conversionToUser(ResultSet resultSet) throws SQLException {
+    private User convertToUser(ResultSet resultSet) throws SQLException {
         long id = resultSet.getLong("user_id");
         String name = resultSet.getString("name");
         String login = resultSet.getString("login");

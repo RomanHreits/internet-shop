@@ -17,23 +17,17 @@ public class User {
     }
 
     public User(String name, String login, String password) {
+        this(login, password);
         this.name = name;
-        this.login = login;
-        this.password = password;
     }
 
     public User(Long id, String name, String login, String password) {
+        this(name, login, password);
         this.id = id;
-        this.name = name;
-        this.login = login;
-        this.password = password;
     }
 
     public User(Long id, String name, String login, String password, byte[] salt) {
-        this.id = id;
-        this.name = name;
-        this.login = login;
-        this.password = password;
+        this(id, name, login, password);
         this.salt = salt;
     }
 
