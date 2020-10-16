@@ -1,3 +1,4 @@
+<%@ include file = "../header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -20,7 +21,7 @@
 <body>
 <h1>Shopping cart of customer:</h1>
 <h2>${message}</h2>
-<div class="container">
+<div class="container" style="margin-left: 10%">
     <table class="table table-dark table-hover" border="1">
         <thead>
         <tr>

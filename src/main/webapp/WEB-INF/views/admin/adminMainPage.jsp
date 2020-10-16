@@ -8,12 +8,22 @@
 </head>
 <style>
     body {
-        margin: 50px;
+        background: url("https://images.pexels.com/photos/3802667/pexels-photo-3802667.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        position: absolute;
+        font-family: 'Lora', serif;
+        font-weight: 500;
+        min-width: 2280px;
+    }
+    p {
+        margin-left: 50px;
     }
 </style>
 <body>
 <div class="container p-3 my-3 bg-dark text-white">
-    <h1>Welcome to Admin page!</h1>
+    <h1 style="margin-left: 50px">Welcome to Admin page!</h1>
 </div>
 <p><a href="${pageContext.request.contextPath}/products/add" style="font-size:25px;">Add_Product-To-Storage</a></p>
 <p><a href="${pageContext.request.contextPath}/users" style="font-size:25px;">Show-All-Users</a></p>

@@ -3,16 +3,31 @@
 <html>
 <head>
 </head>
-<div class="container">
-    <br>
-    <br>
-    <h3>Please choose your role:</h3>
-    <br>
-    <div class="btn-group btn-group-lg">
-        <a href="${pageContext.request.contextPath}/user" class="btn btn-info" role="button">Consumer</a>
-        <a href="${pageContext.request.contextPath}/admin" class="btn btn-info" role="button">Admin</a>
+<body>
+<div class="btn-group">
+    <button type="button" class="btn btn-info btn-lg dropdown-toggle" style="margin-left: 30%"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        AdminActions
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/products/add">Add_Product-To-Storage</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/users">Show-All-Users</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">Show-All-Products-In-Storage</a>
+        <a class="dropdown-item"
+           href="${pageContext.request.contextPath}/admin/orders">Show-All-Orders-In-Storage</a>
     </div>
 </div>
-<body>
+<div class="btn-group">
+    <button type="button" class="btn btn-danger btn-lg dropdown-toggle" style="margin-left: 60px"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        UserActions
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/user">UserPage</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/products">BuyProducts</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/shoppingCart/products">Shopping-Cart</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath}/user/orders">User-Orders</a>
+    </div>
+</div>
 </body>
 </html>

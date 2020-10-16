@@ -1,3 +1,4 @@
+<%@ include file = "../header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,7 +18,6 @@
 
     body {
         background-color: white;
-        margin: 50px;
     }
 
     h2 {
@@ -29,10 +29,8 @@
     }
 </style>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <h2>Enter your login and password !!!</h2>
-    <a style="margin-left: 45%" href="${pageContext.request.contextPath}/registration" class="btn btn-success btn-lg" role="button">Registration</a>
-</nav>
+    <a style="margin-left: 5%" href="${pageContext.request.contextPath}/registration" class="btn btn-success btn-lg" role="button">Registration</a>
+<h2 style="margin-left: 5%">Enter your login and password !!!</h2>
 <h3 style="color: darkred">${errorMessage}</h3>
 <div class="container">
     <form method="post" class="was-validated" action="${pageContext.request.contextPath}/login">
@@ -54,7 +52,7 @@
     </form>
 </div>
 <br>
-<p><a href="${pageContext.request.contextPath}/" style="font-size:25px;">Back-to-Main-Page</a></p>
+<p style="margin-left: 5%"><a href="${pageContext.request.contextPath}/" style="font-size:25px;">Back-to-Main-Page</a></p>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
