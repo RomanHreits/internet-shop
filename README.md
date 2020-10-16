@@ -38,5 +38,5 @@ Password hashing is used when registering a user.
 * First click the Login button and then click the registration button for the new user
 * Then click the InjectData button to write the data to the database for the correct 
   operation of the store
-* The user only has access to certain pages. To log in as an administrator, click 
-  the Login button and enter the name 'admin' and password '1'
+* The user only has access to certain pages. To log in as an administrator, first click the LogOut button,
+  then click the SingIn button and enter the name 'admin' and password '1'
