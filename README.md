@@ -1,14 +1,14 @@
-# Alt-INTERNET-SHOP project
+# INTERNET-SHOP project
 
 The project implements the work of a simple online store. 
 Built according to the N-Tier architecture, SOLID principles and uses the 
 following software and technologies:
 
-#### Alt-Technologies:
+### Technologies:
 Java, JDBC, Servlets, 
 jsp, HTML, bootstrap, jstl.
 
-#### Alt-Software: 
+### Software: 
 Maven, Tomcat, 
 MySQL (Workbench), git.
 
@@ -16,19 +16,19 @@ Configured filters, implemented authentication and authorization
 (according to the roles Admin, User). 
 Password hashing is used when registering a user.
 
-#### Alt-Admin can:
+### Admin can:
 * view the list of registered users and delete them from the database
 * view all products
 * add / delete products
 * view all orders, delete them 
 
-#### Alt-User can:
+### User can:
 * view available products and put them in the cart
 * delete products from the cart 
 * form orders 
 * view the list of their orders and details
 
-### Alt-Running the project on a local machine
+## Alt-Running the project on a local machine
 * Configure Tomcat
 * Insert your own MySQL username and login in dbProperties in the ConnectionUtil class
 * Run the scripts in the src / main / resources / init_db.sql file via MySQL workbench
