@@ -28,7 +28,7 @@ Password hashing is used when registering a user.
 * form orders 
 * view the list of their orders and details
 
-## Alt-Running the project on a local machine
+## Running the project on a local machine
 * Configure Tomcat
 * Insert your own MySQL username and login in dbProperties in the ConnectionUtil class
 * Run the scripts in the src / main / resources / init_db.sql file via MySQL workbench
