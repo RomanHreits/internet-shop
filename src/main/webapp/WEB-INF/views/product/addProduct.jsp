@@ -1,3 +1,4 @@
+<%@ include file = "../header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,11 +16,6 @@
         border: 2px solid black;
     }
 
-    body {
-        margin: 50px;
-        background-color: white;
-    }
-
     h1 {
         color: blue;
     }
@@ -29,9 +25,9 @@
     }
 </style>
 <body>
-<h1>Enter product name and price!!!</h1>
+<h1 style="margin-left: 50px">Enter product name and price!!!</h1>
 
-<form method="post" style="margin: 10px" action="${pageContext.request.contextPath}/products/add">
+<form method="post" style="margin: 50px" action="${pageContext.request.contextPath}/products/add">
     <label><b>Name:</b></label><br>
     <input type="text" , name="name" required pattern="[a-zA-Z]+"><br><br>
     <label>Price:</label><br>
@@ -39,7 +35,7 @@
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
 <h2>${message}</h2>
-<p><a href="${pageContext.request.contextPath}/admin" style="font-size:25px;">Personal-Office</a></p>
+<p style="margin-left: 50px"><a href="${pageContext.request.contextPath}/admin" style="font-size:25px;">Personal-Office</a></p>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
